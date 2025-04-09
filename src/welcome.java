@@ -1,6 +1,6 @@
 import java.util.Scanner;
 public class welcome {
-    static final int NUM_BOOK = 3;
+    static final int NUM_BOOK = 5;
     static final int NUM_ITEM = 7;
 
     public static void main(String[] args) {
@@ -169,5 +169,22 @@ public class welcome {
         book[2][4] = "컴퓨팅 사고력을 키우는 블록 코딩";
         book[2][5] = "컴퓨터입문";
         book[2][6] = "2019/06/10";
+
+        book[3][0] = "ISBN1237";
+        book[3][1] = "The Pragmatic Programmer";
+        book[3][2] = "45000"; // 가격 (원화로 가정)
+        book[3][3] = "Andy Hunt, Dave Thomas";
+        book[3][4] = "소프트웨어 개발의 실용적인 접근법을 제시하는 고전적인 프로그래밍 서적";
+        book[3][5] = "IT전문서";
+        book[3][6] = "1999/10/20";
+
+        book[4][0] = "ISBN1238";
+        book[4][1] = "Clean Code";
+        book[4][2] = "48000"; // 가격 (원화로 가정)
+        book[4][3] = "Robert C. Martin";
+        book[4][4] = "깨끗한 코드 작성을 위한 원칙과 사례를 다룬 필독서";
+        book[4][5] = "IT전문서";
+        book[4][6] = "2008/08/01";
+
     }
 }
