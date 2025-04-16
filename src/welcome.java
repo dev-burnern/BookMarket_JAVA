@@ -2,6 +2,8 @@ import java.util.Scanner;
 public class welcome {
     static final int NUM_BOOK = 5;
     static final int NUM_ITEM = 7;
+    static CartItem[] mCartItem = new CartItem[NUM_BOOK];
+    static int mCartCount = 0;
 
     public static void main(String[] args) {
         String[][] mBook = new String[NUM_BOOK][NUM_ITEM];
@@ -87,10 +89,21 @@ public class welcome {
     }
     public static void menuGuestInfo(String userName, String userMobile) {
         System.out.println("현재 고객 정보 : ");
-        System.out.println("이름 " + userName + " 연락처 " + userMobile);
+//        System.out.println("이름 " + userName + " 연락처 " + userMobile);
+         Person person = new Person(userName, userMobile);
+        System.out.println("이름 " + person.getName() + " 연락처 " + person.getPhone());
     }
     public static void menuCartItemList() {
-        System.out.println("2. 장바구니 상품 목록 보기");
+        System.out.println("2. 장바구니 상품 목록 : ");
+        System.out.println("--------------------------------------");
+        System.out.println("    도서ID \t |     수량 \t |     합계\t\t|");
+        for (int i = 0; i < mCartCount; i++) {
+            System.out.print("    " + mCartItem[i].getBookID() + " | ");
+            System.out.print("    " +  mCartItem[i].getQuantity() + " \t | ");
+            System.out.print("    " + mCartItem[i].getTotalPrice() + " \t| ");
+            System.out.println("  ");
+        }
+        System.out.println("--------------------------------------");
     }
     public static void menuCartClear() {
         System.out.println("3. 장바구니 비우기");
@@ -127,11 +140,23 @@ public class welcome {
 
                 if (str.toUpperCase().equals("Y")){
                     System.out.println(book[numId][0] + " 도서가 장바구니에 추가되었습니다.");
+                    if (!isCartInBook(book[numId][0]))
+                        mCartItem[mCartCount++] = new CartItem(book[numId]);
                 }
                 quit = true;
             }else
                 System.out.println("다시 입력해 주세요");
         }
+    }
+    public static boolean isCartInBook(String bookId) {
+        boolean flag = false;
+        for (int i = 0; i < mCartCount; i++) {
+            if (bookId == mCartItem[i].getBookID()) {
+                mCartItem[i].setQuantity(mCartItem[i].getQuantity() + 1);
+                flag = true;
+            }
+        }
+        return flag;
     }
     public static void menuCartRemoveItemCount() {
         System.out.println("5. 장바구니에 항목 수량 줄이기");
